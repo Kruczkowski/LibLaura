@@ -1,1 +1,0 @@
-/usr/bin/c++   -O3 -DNDEBUG   CMakeFiles/localization_from_device.dir/localization_from_device.cpp.o  -o localization_from_device -rdynamic ../lib/liblaura.so /usr/local/lib/librtaudio.so -lfftw3 -lfftw3f -lsndfile -pthread -Wl,-rpath,/home/piotr/Dokumenty/git/liblaura-0.1.0/lib:/usr/local/lib 
