@@ -25,7 +25,7 @@ int main( int argc, char * argv[] ){
                              2,                  /* channels -> 2 (binaural) */
                              0.175,              /* distance between microphones [m] -> 17.5cm */
                              340,                /* speed of sound [m/s] */
-                             TDOA|CORRELATION);              /* flags */
+                             TDOA|CORRELATION);  /* flags */
 
     laura->showMessages(ALLMESSAGES);
  
@@ -49,7 +49,7 @@ int main( int argc, char * argv[] ){
 	std::cout << "Set time [seconds]: ";
 	std::cin >> time;
 
-    laura->capture(device, 50);
+	laura->capture(device, 100);
     gettimeofday(&start, NULL);
 
 	while(stop.tv_sec-start.tv_sec < time){
@@ -61,5 +61,7 @@ int main( int argc, char * argv[] ){
     laura->audio->stop();
     while(laura->isStreamRunning());
     delete callback;
+    delete laura;
+
 }
 

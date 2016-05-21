@@ -13,16 +13,13 @@ public:
         ITD_result;
 
     virtual void provider(CallbackResult* result){
-        if(!(
-                    result->get(TDOA, TDOA_result) &&
-                    result->get(ILD, ILD_result) &&
-                    result->get(ITD, ITD_result)
-                    )){
-            std::cout<<"Error with CallbackResult"<<std::endl;
-        }
-        else{
+        if( result->get(TDOA, TDOA_result) &&
+            result->get(ILD, ILD_result) &&
+            result->get(ITD, ITD_result)
+          ){
+        
             std::cout << "Azimuth: " << TDOA_result << " deg, ILD: "
-                      << ILD_result << " dB, ITD: " << ITD_result << " ?" << std::endl;
+                      << ILD_result << " , ITD: " << ITD_result << std::endl;
         }
     }
 };
@@ -30,16 +27,20 @@ public:
 int main( int argc, char * argv[] ){
 
     if(argc < 2){
-        std::cout << "Usage: localization_from_file <audio_file>" << std::endl;
+        std::cout << "Usage: localization_from_file <audio_file>" << std::endl << std::endl;
+		std::cout << "Examples:" << std::endl;
+		std::cout << "  ./localization_from_file ./sounds/electric\\ razor.flac" << std::endl;
+		std::cout << "  ./localization_from_file ./sounds/rattle.flac" << std::endl;
+		std::cout << std::endl;
         exit(1);
     }
 
-	std::string pathToFile = argv[1];
+    std::string pathToFile = argv[1];
 
     std::cout << "Input file name = " << pathToFile << std::endl;
 
     Laura laura(44100,              /* sample rate [Hz] */
-                50,                 /* frame size [ms] */
+                11.6,               /* frame size [ms] */
                 2,                  /* channels -> 2 (binaural) */
                 0.175,              /* distance between microphones [m] -> 17.5cm */
                 340,                /* speed of sound [m/s] */
